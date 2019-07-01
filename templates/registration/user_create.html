@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}<title>Register</title>{% endblock %}
+{% load crispy_forms_tags %}
+
+{#{% block javascript %}#}
+{#    <script>#}
+{#        $("#id_username").change(function () {#}
+{#            var username = $(this).val();#}
+{##}
+{#            $.ajax({#}
+{#                url: '{% url "validate_username" %}',#}
+{#                data: {#}
+{#                    'username': username#}
+{#                },#}
+{#                dataType: 'json',#}
+{#                success: function (data) {#}
+{#                    if (data.is_taken) {#}
+{#                        alert("A user with this username already exists.");#}
+{#                    }#}
+{#                }#}
+{#            });#}
+{##}
+{#        });#}
+{#    </script>#}
+{#{% endblock %}#}
+{% block forms %}
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            {{ user_form|crispy }}
+        </div>
+        <button type="submit" class="btn btn-dark btn-sm">Sign up</button>
+    </form>
+{% endblock %}
