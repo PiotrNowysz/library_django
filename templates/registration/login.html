@@ -18,5 +18,6 @@
     <button type="submit" class="btn btn-dark btn-sm">Login</button>
 </form>
     {{ message }}
+    <p><a href="{% url 'password_forgotten' %}">I forgot my password</a></p>
     <p><a href="{% url 'register' %}">Sign up</a></p>
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}<title>Password forgotten</title>{% endblock %}
+{% load crispy_forms_tags %}
+{% block forms %}
+<form action="{% url 'password_forgotten' %}" method="POST">
+    {% csrf_token %}
+    {{ form|crispy  }}
+    <button type="submit" class="btn btn-dark btn-sm">Send</button>
+</form>
+    {{ message }}
+{% endblock %}
