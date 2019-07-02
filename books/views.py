@@ -4,7 +4,11 @@ from .models import Book, BookUser, Author
 import operator
 from django.utils import timezone
 from datetime import timedelta
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.models import User
+from django.utils.translation import gettext as _
+
+
 
 
 # Create your views here.
@@ -42,3 +46,11 @@ class AuthorDetailsView(View):
 class MyBooksView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'books/my_books.html', {'user': request.user})
+
+class UsersView(PermissionRequiredMixin, View):
+    permission_required = 'auth.view_user'
+    permission_denied_message = _('access denied')
+
+    def get(self, request):
+        users = User.objects.all()
+        return render(request, 'books/users.html', {'users': users})

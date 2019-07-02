@@ -32,5 +32,6 @@ urlpatterns = [
     re_path(r'^reserve/(?P<book_id>(\d)+)', books_views.BookReserveView.as_view(), name='reserve'),
     re_path(r'^author/(?P<author_id>(\d)+)', books_views.AuthorDetailsView.as_view(), name='author_details'),
     path('user/', books_views.MyBooksView.as_view(), name='my_books'),
+    path('users/', books_views.UsersView.as_view(), name='users'),
 
 ]
