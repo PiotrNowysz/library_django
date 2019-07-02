@@ -29,5 +29,6 @@ urlpatterns = [
     re_path(r'^reset/(?P<user_id>(\d)+)/(?P<token>(\w)+)', registration_views.ResetPasswordView.as_view(), name='reset_password'),
     re_path(r'^book/(?P<book_id>(\d)+)', books_views.BookDetailsView.as_view(), name='book_details'),
     path('home/', books_views.BooksListView.as_view(), name='main'),
+    re_path(r'^reserve/(?P<book_id>(\d)+)', books_views.BookReserveView.as_view(), name='reserve'),
 
 ]
