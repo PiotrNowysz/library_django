@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}<title>{{ author }}</title>{% endblock %}
+
+{% block content %}
+    <div align="left">
+        <table class="table table-striped">
+            <tbody>
+            {% for book in author.book_set.all %}
+                <tr>
+                    <td><img src="{{ book.cover.url }}"></td>
+                    <td><a class="nav-link" style="color: #373B43" href="/book/{{ book.id }}">{{ book }}</a></td>
+                    <td>{% if book.current_store is 0 %}
+                    <img src="{% static 'registration/not.png' %}" width="20" height="20"/>
+                {% endif %} </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

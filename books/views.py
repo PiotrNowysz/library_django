@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import Book, BookUser
+from .models import Book, BookUser, Author
 import operator
 from django.utils import timezone
 from datetime import timedelta
@@ -20,6 +20,7 @@ class BookDetailsView(View):
         book = Book.objects.get(id=book_id)
         return render(request, 'books/book_details.html', {'book': book})
 
+
 class BookReserveView(LoginRequiredMixin, View):
     def get(self, request, book_id):
         user = request.user
@@ -31,3 +32,13 @@ class BookReserveView(LoginRequiredMixin, View):
 
         book.save()
         return redirect('/user/')
+
+
+class AuthorDetailsView(View):
+    def get(self, request, author_id):
+        author = Author.objects.get(id=author_id)
+        return render(request, 'books/author_details.html', {'author': author})
+
+class MyBooksView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'books/my_books.html', {'user': request.user})

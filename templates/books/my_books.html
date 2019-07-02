@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}<title>My profile</title>{% endblock %}
+
+{% block content %}
+    <div align="left">
+        <table class="table table-striped">
+            <tbody>
+            {% for relation in user.bookuser_set.all %}
+                <tr>
+                    <td><img src="{{ relation.book.cover.url }}"></td>
+                    <td><a class="nav-link" style="color: #373B43" href="/book/{{ relation.book.id }}">{{ relation.book }}</a></td>
+                    <td><p class="nav-link">{{ relation.deadline.date }}</p></td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
