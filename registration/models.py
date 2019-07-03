@@ -11,3 +11,4 @@ class UserDetails(models.Model):
     address = models.TextField(blank=True, null=True)
     hash = models.TextField(blank=True, null=True)
     hash_valid_to = models.DateTimeField(blank=True, null=True)
+

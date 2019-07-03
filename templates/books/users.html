@@ -8,12 +8,13 @@
             <tbody>
             {% for user in users %}
                 <tr>
-                    <td>{{ user }}</td>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
                     <td><a class="nav-link" style="color: #373B43" href="/user/{{ book.id }}">{{ book }}</a></td>
-                    <td><a class="nav-link" style="color: #373B43" href="/author/{{ book.author.id }}">{{ book.author }}</a></td>
+                    <td><a class="nav-link" style="color: #373B43"
+                           href="/author/{{ book.author.id }}">{{ book.author }}</a></td>
                     <td>{% if book.current_store is 0 %}
-                    <img src="{% static 'registration/not.png' %}" width="20" height="20"/>
-                {% endif %} </td>
+                        <img src="{% static 'registration/not.png' %}" width="20" height="20"/>
+                    {% endif %} </td>
                 </tr>
 
             {% endfor %}

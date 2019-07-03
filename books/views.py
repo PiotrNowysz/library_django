@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from books import forms as books_forms
+from django.db.models import Q
 
 
 # Create your views here.
@@ -15,6 +16,15 @@ from books import forms as books_forms
 class BooksListView(View):
     def get(self, request):
         books = sorted(Book.objects.all(), key=operator.attrgetter('title'))
+        return render(request, 'books/books_list.html', {'books': books})
+
+    def post(self, request):
+        search = request.POST.get('search')
+        print(search)
+        books = Book.objects.filter(
+            Q(author__first_name__icontains=search) | Q(author__last_name__icontains=search) | Q(
+                title__icontains=search))
+        print(books)
         return render(request, 'books/books_list.html', {'books': books})
 
 
