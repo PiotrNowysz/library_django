@@ -14,11 +14,26 @@
             </tbody>
         </table>
     </div>
-    <div align="right">
+    <div align="right" style="margin: 5px">
         {% if book.current_store > 0 %}
-            <a href="/reserve/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">I'd like to rent this book</a>
+            <a href="/reserve/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Rent this
+                book</a>
         {% else %}
-            <button type="button" class="btn btn-dark btn-sm" disabled>I'd like to rent this book</button>
+            <button type="button" class="btn btn-dark btn-sm" disabled>Rent this book</button>
         {% endif %}
-    </div>
+        {% if perms.auth.edit_book %}
+            <a href="/book_edit/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Edit</a>
+        {% endif %}
+        {% if perms.auth.delete_book %}
+            <button id="delete" type="button" class="btn btn-dark btn-sm" style="color: red" role="button" aria-pressed="true">
+                Delete
+            </button>
+            </div>
+            <div id="confirmation" align="right" style="margin: 5px" hidden>
+                <p>Are you sure you want to delete this book?</p>
+                <a href="/book_delete/{{ book.id }}" id="yes" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Yes,
+                    I'm sure</a>
+                <button id="no" type="button" class="btn btn-dark btn-sm" role="button" aria-pressed="true">No</button>
+            </div>
+        {% endif %}
 {% endblock %}

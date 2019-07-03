@@ -87,25 +87,30 @@ class BookAddView(PermissionRequiredMixin, View):
 
         return redirect('/book_add/')
 
-# class AuthorAddView(PermissionRequiredMixin, View):
-#     permission_required = 'auth.add_author'
-#     permission_denied_message = _('access denied')
-#
-#     def post(self, request):
-#         form = books_forms.AuthorForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/book_add/')
-#         return redirect('/book_add/')
-#
-#
-# class GenreAddView(PermissionRequiredMixin, View):
-#     permission_required = 'auth.add_genre'
-#     permission_denied_message = _('access denied')
-#
-#     def post(self, request):
-#         form = books_forms.GenreForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/book_add/')
-#         return redirect('/book_add/')
+
+class BookEditView(PermissionRequiredMixin, View):
+    permission_required = 'auth.change_book'
+    permission_denied_message = _('access denied')
+
+    def get(self, request, book_id):
+        book = Book.objects.get(id=book_id)
+        form = books_forms.BookForm(instance=book)
+        return render(request, 'books/book_edit.html', {'form': form,
+                                                        'book_id': book_id})
+
+    def post(self, request, book_id):
+        book = Book.objects.get(id=book_id)
+        form = books_forms.BookForm(request.POST, request.FILES, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('/home/')
+
+
+class BookDeleteView(PermissionRequiredMixin, View):
+    permission_required = 'auth.delete_book'
+    permission_denied_message = _('access denied')
+
+    def get(self, request, book_id):
+        book = Book.objects.get(id=book_id)
+        book.delete()
+        return redirect('/home/')

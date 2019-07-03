@@ -19,14 +19,14 @@ from registration import views as registration_views
 from django.contrib.auth.views import LogoutView
 from books import views as books_views
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', registration_views.UserCreateView.as_view(), name='register'),
     path('login/', registration_views.LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('password_forgotten/', registration_views.PasswordForgottenView.as_view(), name='password_forgotten'),
-    re_path(r'^reset/(?P<user_id>(\d)+)/(?P<token>(\w)+)', registration_views.ResetPasswordView.as_view(), name='reset_password'),
+    re_path(r'^reset/(?P<user_id>(\d)+)/(?P<token>(\w)+)', registration_views.ResetPasswordView.as_view(),
+            name='reset_password'),
     re_path(r'^book/(?P<book_id>(\d)+)', books_views.BookDetailsView.as_view(), name='book_details'),
     path('home/', books_views.BooksListView.as_view(), name='main'),
     re_path(r'^reserve/(?P<book_id>(\d)+)', books_views.BookReserveView.as_view(), name='reserve'),
@@ -34,5 +34,6 @@ urlpatterns = [
     path('user/', books_views.MyBooksView.as_view(), name='my_books'),
     path('users/', books_views.UsersView.as_view(), name='users'),
     path('book_add/', books_views.BookAddView.as_view(), name='book_add'),
-
+    re_path(r'^book_edit/(?P<book_id>(\d)+)', books_views.BookEditView.as_view(), name="book_edit"),
+    re_path(r'^book_delete/(?P<book_id>(\d)+)', books_views.BookDeleteView.as_view(), name="book_delete"),
 ]

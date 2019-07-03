@@ -43,7 +43,7 @@ class Book(models.Model):
     current_store = models.IntegerField(blank=True, null=True)
     user = models.ManyToManyField(User, through='BookUser')
     md5_cover = models.CharField(max_length=32, blank=True)
-    cover = models.ImageField(blank=True, null=True, upload_to=get_upload_file_hashdir)
+    cover = models.ImageField(upload_to=get_upload_file_hashdir)
     barcode = models.CharField(max_length=256, blank=True)
 
     def __str__(self):
