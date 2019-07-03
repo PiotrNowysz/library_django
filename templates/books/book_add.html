@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}<title>Add Book</title>{% endblock %}
+{% load crispy_forms_tags %}
+
+    {% block forms %}
+<div class="col-8">
+        <div style="float:left;width:30%;margin-right: 10px">
+            <form action="{% url 'book_add' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ book_form|crispy }}
+                <button type="submit" class="btn btn-dark btn-sm" name="book_btn">Add book</button>
+            </form>
+        </div>
+        <div style="float:left;width:30%;margin-right: 10px">
+            <form action="
+        {% url 'book_add' %}" method="post">
+                {% csrf_token %}
+                {{ author_form|crispy }}
+                <button type="submit" class="btn btn-dark btn-sm" name="author_btn">Add author</button>
+            </form>
+        </div>
+        <div style="float:left;width:30%">
+            <form action="{% url 'book_add' %}" method="post">
+                {% csrf_token %}
+                {{ genre_form|crispy }}
+                <button type="submit" class="btn btn-dark btn-sm" name="genre_btn">Add genre</button>
+            </form>
+        </div>
+       </div>
+    {% endblock %}
+

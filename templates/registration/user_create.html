@@ -23,12 +23,15 @@
 {#        });#}
 {#    </script>#}
 {#{% endblock %}#}
-{% block forms %}
-    <form action="{% url 'register' %}" method="POST">
-        {% csrf_token %}
-        <div class="row">
-            {{ user_form|crispy }}
-        </div>
-        <button type="submit" class="btn btn-dark btn-sm">Sign up</button>
-    </form>
-{% endblock %}
+
+    {% block forms %}
+    <div class="col-3">
+        <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                {{ user_form|crispy }}
+            </div>
+            <button type="submit" class="btn btn-dark btn-sm">Sign up</button>
+        </form>
+    </div>
+    {% endblock %}

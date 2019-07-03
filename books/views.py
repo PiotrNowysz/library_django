@@ -7,8 +7,7 @@ from datetime import timedelta
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
-
-
+from books import forms as books_forms
 
 
 # Create your views here.
@@ -43,9 +42,11 @@ class AuthorDetailsView(View):
         author = Author.objects.get(id=author_id)
         return render(request, 'books/author_details.html', {'author': author})
 
+
 class MyBooksView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'books/my_books.html', {'user': request.user})
+
 
 class UsersView(PermissionRequiredMixin, View):
     permission_required = 'auth.view_user'
@@ -54,3 +55,57 @@ class UsersView(PermissionRequiredMixin, View):
     def get(self, request):
         users = User.objects.all()
         return render(request, 'books/users.html', {'users': users})
+
+
+class BookAddView(PermissionRequiredMixin, View):
+    permission_required = 'auth.add_book'
+    permission_denied_message = _('access denied')
+
+    def get(self, request):
+        book_form = books_forms.BookForm()
+        author_form = books_forms.AuthorForm()
+        genre_form = books_forms.GenreFrom()
+        return render(request, 'books/book_add.html', {'book_form': book_form,
+                                                       'author_form': author_form,
+                                                       'genre_form': genre_form})
+
+    def post(self, request):
+        if 'book_btn' in request.POST:
+            form = books_forms.BookForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+
+        if 'author_btn' in request.POST:
+            form = books_forms.AuthorForm(request.POST)
+            if form.is_valid():
+                form.save()
+
+        if 'genre_btn' in request.POST:
+            form = books_forms.GenreFrom(request.POST)
+            if form.is_valid():
+                form.save()
+
+        return redirect('/book_add/')
+
+# class AuthorAddView(PermissionRequiredMixin, View):
+#     permission_required = 'auth.add_author'
+#     permission_denied_message = _('access denied')
+#
+#     def post(self, request):
+#         form = books_forms.AuthorForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/book_add/')
+#         return redirect('/book_add/')
+#
+#
+# class GenreAddView(PermissionRequiredMixin, View):
+#     permission_required = 'auth.add_genre'
+#     permission_denied_message = _('access denied')
+#
+#     def post(self, request):
+#         form = books_forms.GenreForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/book_add/')
+#         return redirect('/book_add/')

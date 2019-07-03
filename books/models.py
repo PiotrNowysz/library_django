@@ -35,12 +35,12 @@ class Genre(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=128)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    description = models.TextField(null=True)
+    genre = models.ManyToManyField(Genre)
     language = models.CharField(max_length=32, choices=LANGUAGES, null=True)
     store = models.IntegerField()
     current_store = models.IntegerField(blank=True, null=True)
-    description = models.TextField(null=True)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    genre = models.ManyToManyField(Genre)
     user = models.ManyToManyField(User, through='BookUser')
     md5_cover = models.CharField(max_length=32, blank=True)
     cover = models.ImageField(blank=True, null=True, upload_to=get_upload_file_hashdir)

@@ -93,3 +93,4 @@ class ResetPasswordView(View):
             return redirect('/login/')
         return render(request, 'registration/reset_password.html',
                       {'form': form, 'user_id': user_id, 'token': token})
+
