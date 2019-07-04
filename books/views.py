@@ -35,12 +35,15 @@ class BookDetailsView(View):
         return render(request, 'books/book_details.html', {'book': book})
 
 
-class BookReserveView(LoginRequiredMixin, View):
+class BookRentView(LoginRequiredMixin, View):
     def get(self, request, book_id):
         user = request.user
         book = Book.objects.get(id=book_id)
-        if book.current_store < 1:
+        book_user = BookUser.objects.filter(user=user)
+        print(book_user)
+        if book.current_store < 1 or book in book_user:
             return redirect('/')
+
         BookUser(user=user, book=book, deadline=timezone.now() + timedelta(days=12)).save()
         book.current_store -= 1
 
@@ -57,15 +60,6 @@ class AuthorDetailsView(View):
 class MyBooksView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'books/my_books.html', {'user': request.user})
-
-
-class UsersView(PermissionRequiredMixin, View):
-    permission_required = 'auth.view_user'
-    permission_denied_message = _('access denied')
-
-    def get(self, request):
-        users = User.objects.all()
-        return render(request, 'books/users.html', {'users': users})
 
 
 class BookAddView(PermissionRequiredMixin, View):
@@ -126,6 +120,7 @@ class BookDeleteView(PermissionRequiredMixin, View):
         book.delete()
         return redirect('/home/')
 
+
 class BookFilterView(View):
 
     def get(self, request):
@@ -133,9 +128,17 @@ class BookFilterView(View):
         filter = filters.BookFilter(request.GET, queryset=book_list)
         return render(request, 'books/book_search.html', {'filter': filter})
 
+
 class UserFilterView(View):
 
     def get(self, request):
         user_list = User.objects.all()
         filter = filters.UserFilter(request.GET, queryset=user_list)
         return render(request, 'books/users.html', {'filter': filter})
+
+
+class UserDetailsView(View):
+
+    def get(self, request, user_id):
+        user = User.objects.get(id=user_id)
+        return render(request, 'books/user_details.html', {'user': user})

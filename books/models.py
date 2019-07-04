@@ -63,6 +63,8 @@ class BookUser(models.Model):
     rating = models.IntegerField(choices=RATING, null=True, blank=True)
     deadline = models.DateTimeField(null=True, blank=True)
     is_rented = models.BooleanField(default=False)
+    rent_date = models.DateTimeField(auto_now_add=True)
+    return_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.user} {self.book}'

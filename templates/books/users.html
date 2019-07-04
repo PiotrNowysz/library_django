@@ -1,15 +1,16 @@
-{#{% extends 'base.html' %}#}
-{#{% block title %}<title>Users</title>{% endblock %}#}
-{#{% load crispy_forms_tags %}#}
-{##}
-{#{% block content %}#}
-{#<form method="get">#}
-{#    {{ filter.form.as_p }}#}
-{#    <button type="submit">Search</button>#}
-{#  </form>#}
-{#  <ul>#}
-{#  {% for user in filter.qs %}#}
-{#    <li>{{ user.username }} - {{ user.get_full_name }}</li>#}
-{#  {% endfor %}#}
-{#  </ul>#}
-{#{% endblock %}#}
+{% extends 'base.html' %}
+{% block title %}<title>Users</title>{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+  {% for user in filter.qs %}
+    <li><a class="nav-link" style="color: #373B43"
+                           href="/user/{{ user.id }}">{{ user }}</a></li>
+  {% endfor %}
+  </ul>
+{% endblock %}

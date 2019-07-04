@@ -30,12 +30,13 @@ urlpatterns = [
             name='reset_password'),
     re_path(r'^book/(?P<book_id>(\d)+)', books_views.BookDetailsView.as_view(), name='book_details'),
     path('', books_views.BooksListView.as_view(), name='home'),
-    re_path(r'^reserve/(?P<book_id>(\d)+)', books_views.BookReserveView.as_view(), name='reserve'),
+    re_path(r'^reserve/(?P<book_id>(\d)+)', books_views.BookRentView.as_view(), name='reserve'),
     re_path(r'^author/(?P<author_id>(\d)+)', books_views.AuthorDetailsView.as_view(), name='author_details'),
     path('user/', books_views.MyBooksView.as_view(), name='my_books'),
-    re_path(r'^users/$', books_views.UsersView.as_view(), name='users'),
+    re_path(r'^users/$', books_views.UserFilterView.as_view(), name='users'),
     path('book_add/', books_views.BookAddView.as_view(), name='book_add'),
     re_path(r'^book_edit/(?P<book_id>(\d)+)', books_views.BookEditView.as_view(), name="book_edit"),
     re_path(r'^book_delete/(?P<book_id>(\d)+)', books_views.BookDeleteView.as_view(), name="book_delete"),
     re_path(r'^book_search/$', books_views.BookFilterView.as_view(), name='book_search'),
+    re_path(r'^user/(?P<user_id>(\d)+)', books_views.UserDetailsView.as_view(), name='user_details')
 ]

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}<title>{{ user }}</title>{% endblock %}
+
+{% block content %}
+    <div style="margin: 5px">
+        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+        <p>email: {{ user.username }}</p>
+        <p>phone number: {{ user.userdetails.phone_number }}</p>
+        <p>address: {{ user.userdetails.address }}</p>
+
+        <table class="table table-borderedtable">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Rent Date</th>
+                <th>Deadline</th>
+                <th>Return Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for bookuser in user.bookuser_set.all %}
+                <tr>
+                <td>{{ bookuser.book.title }}</td>
+                <td>{{ bookuser.book.author }}</td>
+                <td>{{ bookuser.rent_date }}</td>
+                <td>{{ bookuser.deadline }}</td>
+                <td>{{ bookuser.return_date }}</td>
+                {% if bookuser.is_rented %}
+                    <td><a href="/return/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Return</a>
+                    </td>
+                {% endif %}
+                {% if not bookuser.is_rented %}
+                    <td>
+                <button type="button" class="btn btn-dark btn-sm" disabled>Return</button>
+                    </td>
+                {% endif %}
+                {% if bookuser.is_rented %}
+                    <td><a href="/extend/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Extend</a>
+                    </td>
+                {% endif %}
+                {% if not bookuser.is_rented %}
+                    <td>
+                <button type="button" class="btn btn-dark btn-sm" disabled>Extend</button>
+                    </td>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
