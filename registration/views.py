@@ -42,7 +42,7 @@ class LoginView(View):
             user = auth.authenticate(username=username, password=password)
             try:
                 auth.login(request, user)
-                return redirect("/home")
+                return redirect("/")
             except AttributeError:
                 return render(request, 'registration/login.html', {'form': form,
                                                                    'message': _('Wrong email or password')})

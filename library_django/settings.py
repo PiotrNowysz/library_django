@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'registration',
     'books',
     'crispy_forms',
+    'django_filters',
 
 ]
 

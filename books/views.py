@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from books import forms as books_forms
 from django.db.models import Q
+from books import filters
 
 
 # Create your views here.
@@ -21,10 +22,10 @@ class BooksListView(View):
     def post(self, request):
         search = request.POST.get('search')
         print(search)
-        books = Book.objects.filter(
+        books = sorted(Book.objects.filter(
             Q(author__first_name__icontains=search) | Q(author__last_name__icontains=search) | Q(
-                title__icontains=search))
-        print(books)
+                title__icontains=search)), key=operator.attrgetter('title'))
+
         return render(request, 'books/books_list.html', {'books': books})
 
 
@@ -124,3 +125,17 @@ class BookDeleteView(PermissionRequiredMixin, View):
         book = Book.objects.get(id=book_id)
         book.delete()
         return redirect('/home/')
+
+class BookFilterView(View):
+
+    def get(self, request):
+        book_list = Book.objects.all()
+        filter = filters.BookFilter(request.GET, queryset=book_list)
+        return render(request, 'books/book_search.html', {'filter': filter})
+
+class UserFilterView(View):
+
+    def get(self, request):
+        user_list = User.objects.all()
+        filter = filters.UserFilter(request.GET, queryset=user_list)
+        return render(request, 'books/users.html', {'filter': filter})
