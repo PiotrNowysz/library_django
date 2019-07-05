@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+    <div>
     <form action="" method="get">
         <div class="form-row" style="margin-left: 10px; margin-top: 10px;">
             <div style="margin-right: 5px;">
@@ -32,6 +33,8 @@
             <button type="submit" class="btn btn-dark btn-sm">Filtr</button>
         </div>
     </form>
+    </div>
+    <div>
     <table class="table table-borderedtable">
         <thead>
         <tr>
@@ -58,4 +61,5 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 {% endblock %}

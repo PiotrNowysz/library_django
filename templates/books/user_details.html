@@ -28,16 +28,15 @@
                 <td>{{ bookuser.deadline }}</td>
                 <td>{{ bookuser.return_date }}</td>
                 {% if bookuser.is_rented %}
-                    <td><a href="/return/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Return</a>
+                    <td><a href="/return/{{ bookuser.id }}/" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Return</a>
                     </td>
-                {% endif %}
-                {% if not bookuser.is_rented %}
+                {% else %}
                     <td>
                 <button type="button" class="btn btn-dark btn-sm" disabled>Return</button>
                     </td>
                 {% endif %}
                 {% if bookuser.is_rented %}
-                    <td><a href="/extend/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Extend</a>
+                    <td><a href="/extend/{{ bookuser.id }}/" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Extend</a>
                     </td>
                 {% endif %}
                 {% if not bookuser.is_rented %}

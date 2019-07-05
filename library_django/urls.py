@@ -38,5 +38,7 @@ urlpatterns = [
     re_path(r'^book_edit/(?P<book_id>(\d)+)', books_views.BookEditView.as_view(), name="book_edit"),
     re_path(r'^book_delete/(?P<book_id>(\d)+)', books_views.BookDeleteView.as_view(), name="book_delete"),
     re_path(r'^book_search/$', books_views.BookFilterView.as_view(), name='book_search'),
-    re_path(r'^user/(?P<user_id>(\d)+)', books_views.UserDetailsView.as_view(), name='user_details')
+    re_path(r'^user/(?P<user_id>(\d)+)', books_views.UserDetailsView.as_view(), name='user_details'),
+    re_path(r'^return/(?P<bookuser_id>(\d)+)', books_views.BookReturnView.as_view(), name='book_return'),
+    re_path(r'^extend/(?P<bookuser_id>(\d)+)', books_views.BookExtendView.as_view(), name='book_extend'),
 ]

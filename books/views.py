@@ -1,6 +1,7 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import Book, BookUser, Author
+from books.models import Book, BookUser, Author
 import operator
 from django.utils import timezone
 from datetime import timedelta
@@ -10,6 +11,7 @@ from django.utils.translation import gettext as _
 from books import forms as books_forms
 from django.db.models import Q
 from books import filters
+from books import validors
 
 
 # Create your views here.
@@ -32,23 +34,47 @@ class BooksListView(View):
 class BookDetailsView(View):
     def get(self, request, book_id):
         book = Book.objects.get(id=book_id)
-        return render(request, 'books/book_details.html', {'book': book})
+        user = request.user
+        validation = validors.validate_renting(book, user)
+
+        return render(request, 'books/book_details.html', {'book': book,
+                                                           'validation': validation})
 
 
 class BookRentView(LoginRequiredMixin, View):
     def get(self, request, book_id):
         user = request.user
         book = Book.objects.get(id=book_id)
-        book_user = BookUser.objects.filter(user=user)
-        print(book_user)
-        if book.current_store < 1 or book in book_user:
+        if validors.validate_renting(book, user):
+            BookUser(user=user, book=book, deadline=timezone.now() + timedelta(days=12), is_rented=True).save()
+            book.current_store -= 1
+            book.save()
+            return redirect('/user/')
+        else:
             return redirect('/')
 
-        BookUser(user=user, book=book, deadline=timezone.now() + timedelta(days=12)).save()
-        book.current_store -= 1
 
-        book.save()
-        return redirect('/user/')
+class BookReturnView(PermissionRequiredMixin, View):
+    permission_required = 'auth.change_book'
+    permission_denied_message = _('access denied')
+
+    def get(self, request, bookuser_id):
+        bookuser = BookUser.objects.get(id=bookuser_id)
+        bookuser.is_rented = False
+        bookuser.return_date = timezone.now()
+        bookuser.book.current_store += 1
+        bookuser.save()
+        return redirect(f"/user/{bookuser.user.id}")
+
+class BookExtendView(PermissionRequiredMixin, View):
+    permission_required = 'auth.change_book'
+    permission_denied_message = _('access denied')
+
+    def get(self, request, bookuser_id):
+        bookuser = BookUser.objects.get(id=bookuser_id)
+        bookuser.deadline += timedelta(days=7)
+        bookuser.save()
+        return redirect(f"/user/{bookuser.user.id}")
 
 
 class AuthorDetailsView(View):
@@ -59,7 +85,8 @@ class AuthorDetailsView(View):
 
 class MyBooksView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'books/my_books.html', {'user': request.user})
+        bookuser_set = BookUser.objects.filter(user=request.user, is_rented=True)
+        return render(request, 'books/my_books.html', {'bookuser_set': bookuser_set})
 
 
 class BookAddView(PermissionRequiredMixin, View):

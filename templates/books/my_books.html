@@ -6,11 +6,11 @@
     <div align="left">
         <table class="table table-striped">
             <tbody>
-            {% for relation in user.bookuser_set.all %}
+            {% for bookuser in bookuser_set %}
                 <tr>
-                    <td><img src="{{ relation.book.cover.url }}"></td>
-                    <td><a class="nav-link" style="color: #373B43" href="/book/{{ relation.book.id }}">{{ relation.book }}</a></td>
-                    <td><p class="nav-link">{{ relation.deadline.date }}</p></td>
+                    <td><img src="{{ bookuser.book.cover.url }}"></td>
+                    <td><a class="nav-link" style="color: #373B43" href="/book/{{ bookuser.book.id }}">{{ bookuser.book }}</a></td>
+                    <td><p class="nav-link">{{ bookuser.deadline.date }}</p></td>
                 </tr>
 
             {% endfor %}

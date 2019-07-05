@@ -17,7 +17,6 @@ LANGUAGES = (
 )
 RATING = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
 
-
 class Author(models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
@@ -27,7 +26,7 @@ class Author(models.Model):
 
 
 class Genre(models.Model):
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
         return self.name

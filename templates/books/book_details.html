@@ -15,7 +15,7 @@
         </table>
     </div>
     <div align="right" style="margin: 5px">
-        {% if book.current_store > 0 %}
+        {% if validation %}
             <a href="/reserve/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Rent this
                 book</a>
         {% else %}
