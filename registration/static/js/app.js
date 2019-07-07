@@ -10,18 +10,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    var confirmation = $('#confirmation');
-    var del = $('#delete');
-    var no = $('#no');
 
-    del.on("click", function () {
-        confirmation.removeAttr('hidden')
+    $("#id_username").change(function () {
+        var username = $(this).val();
+
+        $.ajax({
+            url: '/ajax/validate_username/',
+            data: {
+                'username': username
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.is_taken) {
+                    alert("A user with this username already exists.");
+                }
+            }
+        });
+
     });
 
-    no.on('click', function () {
-        confirmation.attr('hidden', 'hidden')
-
-    })
 
 });
 

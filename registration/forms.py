@@ -1,6 +1,7 @@
 import django.forms as forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from registration.models import UserDetails
 from django.utils.translation import gettext as _
 from .validators import validate_password
 from django.core.validators import EmailValidator
@@ -28,7 +29,6 @@ class UserCreateForm(UserCreationForm):
             return permission
         else:
             raise forms.ValidationError(_('You need to accept the terms'))
-
 
 class LoginForm(forms.Form):
     username = forms.EmailField(label=_('Email address'), validators=[EmailValidator()])

@@ -25,15 +25,19 @@
             <a href="/book_edit/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Edit</a>
         {% endif %}
         {% if perms.auth.delete_book %}
-            <button id="delete" type="button" class="btn btn-dark btn-sm" style="color: red" role="button" aria-pressed="true">
+            <button onclick="confiramtion()" type="button" class="btn btn-dark btn-sm" style="color: red"
+                    role="button" aria-pressed="true">
                 Delete
             </button>
             </div>
-            <div id="confirmation" align="right" style="margin: 5px" hidden>
-                <p>Are you sure you want to delete this book?</p>
-                <a href="/book_delete/{{ book.id }}" id="yes" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Yes,
-                    I'm sure</a>
-                <button id="no" type="button" class="btn btn-dark btn-sm" role="button" aria-pressed="true">No</button>
-            </div>
         {% endif %}
+    <script>
+        function confiramtion() {
+            var con = confirm("Are you sure you want to delete this book?");
+            if (con === true) {
+                window.location.href = "/book_delete/{{ book.id }}";
+            }
+
+        }
+    </script>
 {% endblock %}

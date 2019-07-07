@@ -8,16 +8,15 @@ from django.utils import timezone
 from datetime import timedelta
 from .utills import send_mail_to
 from django.utils.crypto import get_random_string
-from .models import UserDetails
-
+from registration.models import UserDetails
+from django.http import JsonResponse
 
 
 # Create your views here.
 class UserCreateView(View):
     def get(self, request):
         user_form = forms.UserCreateForm()
-
-        return render(request, 'registration/user_create.html', {'user_form': user_form, })
+        return render(request, 'registration/user_create.html', {'user_form': user_form})
 
     def post(self, request):
         user_form = forms.UserCreateForm(request.POST)
@@ -94,3 +93,10 @@ class ResetPasswordView(View):
         return render(request, 'registration/reset_password.html',
                       {'form': form, 'user_id': user_id, 'token': token})
 
+class ValidateUsernameView(View):
+    def get(self, request):
+        username = request.GET.get('username', None)
+        data = {
+            'is_taken': User.objects.filter(username__iexact=username).exists()
+        }
+        return JsonResponse(data)

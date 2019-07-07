@@ -1,4 +1,3 @@
-from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from django.views import View
 from books.models import Book, BookUser, Author
@@ -12,6 +11,7 @@ from books import forms as books_forms
 from django.db.models import Q
 from books import filters
 from books import validors
+
 
 
 # Create your views here.
@@ -135,7 +135,7 @@ class BookEditView(PermissionRequiredMixin, View):
         form = books_forms.BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             form.save()
-            return redirect('/home/')
+            return redirect('/')
 
 
 class BookDeleteView(PermissionRequiredMixin, View):
@@ -145,7 +145,7 @@ class BookDeleteView(PermissionRequiredMixin, View):
     def get(self, request, book_id):
         book = Book.objects.get(id=book_id)
         book.delete()
-        return redirect('/home/')
+        return redirect('/book_search')
 
 
 class BookFilterView(View):

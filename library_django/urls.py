@@ -41,4 +41,5 @@ urlpatterns = [
     re_path(r'^user/(?P<user_id>(\d)+)', books_views.UserDetailsView.as_view(), name='user_details'),
     re_path(r'^return/(?P<bookuser_id>(\d)+)', books_views.BookReturnView.as_view(), name='book_return'),
     re_path(r'^extend/(?P<bookuser_id>(\d)+)', books_views.BookExtendView.as_view(), name='book_extend'),
+    url(r'^ajax/validate_username/$', registration_views.ValidateUsernameView, name='validate_username')
 ]
