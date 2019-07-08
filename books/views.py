@@ -10,7 +10,7 @@ from django.utils.translation import gettext as _
 from books import forms as books_forms
 from django.db.models import Q
 from books import filters
-from books import validors
+from books import validators
 
 
 
@@ -35,7 +35,7 @@ class BookDetailsView(View):
     def get(self, request, book_id):
         book = Book.objects.get(id=book_id)
         user = request.user
-        validation = validors.validate_renting(book, user)
+        validation = validators.validate_renting(book, user)
 
         return render(request, 'books/book_details.html', {'book': book,
                                                            'validation': validation})
@@ -45,7 +45,7 @@ class BookRentView(LoginRequiredMixin, View):
     def get(self, request, book_id):
         user = request.user
         book = Book.objects.get(id=book_id)
-        if validors.validate_renting(book, user):
+        if validators.validate_renting(book, user):
             BookUser(user=user, book=book, deadline=timezone.now() + timedelta(days=12), is_rented=True).save()
             book.current_store -= 1
             book.save()
@@ -64,6 +64,7 @@ class BookReturnView(PermissionRequiredMixin, View):
         bookuser.return_date = timezone.now()
         bookuser.book.current_store += 1
         bookuser.save()
+        bookuser.book.save()
         return redirect(f"/user/{bookuser.user.id}")
 
 class BookExtendView(PermissionRequiredMixin, View):

@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext as _
-from books.utills import get_upload_file_hashdir, make_md5
+from books.utils import get_upload_file_hashdir, make_md5
 
 # Create your models here.
 

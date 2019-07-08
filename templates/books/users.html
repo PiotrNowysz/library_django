@@ -3,8 +3,8 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<form action="" method="get">
-    <div class="form-row" style="margin-left: 10px; margin-top: 10px;">
+    <form action="" method="get">
+        <div class="form-row" style="margin-left: 10px; margin-top: 10px;">
             <div style="margin-right: 5px;">
                 {{ filter.form.username|as_crispy_field }}
             </div>
@@ -14,22 +14,24 @@
             <div style="margin-right: 5px;">
                 {{ filter.form.last_name|as_crispy_field }}
             </div>
-        <div style="margin-right: 5px;">
+            <div style="margin-right: 5px;">
                 {{ filter.form.book__title|as_crispy_field }}
             </div>
-        </div>
-    <div style="margin-right: 5px;">
+
+            <div style="margin-right: 5px;">
                 {{ filter.form.bookuser__is_rented|as_crispy_field }}
             </div>
+
         </div>
-    <div style="margin: 10px;">
+        </div>
+        <div style="margin: 10px;">
             <button type="submit" class="btn btn-dark btn-sm">Filtr</button>
         </div>
-  </form>
-  <ul>
-  {% for user in filter.qs %}
-    <li><a class="nav-link" style="color: #373B43"
-                           href="/user/{{ user.id }}">{{ user }}</a></li>
-  {% endfor %}
-  </ul>
+    </form>
+    <ul>
+        {% for user in filter.qs %}
+            <li><a class="nav-link" style="color: #373B43"
+                   href="/user/{{ user.id }}">{{ user }}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}

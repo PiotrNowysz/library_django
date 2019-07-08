@@ -27,6 +27,9 @@
             <div style="margin-right: 5px; width:13%">
                 {{ filter.form.barcode|as_crispy_field }}
             </div>
+            <div style="margin-right: 5px; width:13%">
+                {{ filter.form.bookuser__is_rented|as_crispy_field }}
+            </div>
         </div>
 
         <div style="margin: 10px;">
@@ -41,7 +44,6 @@
             <th>Title</th>
             <th>Author</th>
             <th>Language</th>
-            <th>Genre</th>
             <th>Store</th>
             <th>Barcode</th>
         </tr>
@@ -53,7 +55,6 @@
                 <td><a style="color: #373B43"
                        href="/author/{{ book.author.id }}">{{ book.author }}</a></td>
                 <td style="color: #373B43">{{ book.language }}</td>
-                <td style="color: #373B43">{{ book.genre }}</td>
                 <td style="color: #373B43">{{ book.current_store }}/{{ book.store }}</td>
                 <td style="color: #373B43">{{ book.barcode }}</td>
             </tr>
