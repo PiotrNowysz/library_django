@@ -2,36 +2,47 @@
 {% block title %}<title>Register</title>{% endblock %}
 {% load crispy_forms_tags %}
 
-{#{% block javascript %}#}
-{#    <script>#}
-{#        $("#id_username").change(function () {#}
-{#            var username = $(this).val();#}
-{##}
-{#            $.ajax({#}
-{#                url: '{% url "validate_username" %}',#}
-{#                data: {#}
-{#                    'username': username#}
-{#                },#}
-{#                dataType: 'json',#}
-{#                success: function (data) {#}
-{#                    if (data.is_taken) {#}
-{#                        alert("A user with this username already exists.");#}
-{#                    }#}
-{#                }#}
-{#            });#}
-{##}
-{#        });#}
-{#    </script>#}
-{#{% endblock %}#}
+{% block javascript %}
+  <script>
+    $("#id_username").keyup(function () {
+      var username = $(this).val();
 
-    {% block forms %}
+      $.ajax({
+        url: '{% url "validate_username" %}',
+        data: {
+          'username': username
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            $("#username_message").removeAttr('hidden')
+          }
+          else{
+              $("#username_message").attr('hidden', 'hidden')
+          }
+        }
+      });
+
+    });
+  </script>
+{% endblock %}
+
+{% block forms %}
     <div class="col-3">
         <form action="{% url 'register' %}" method="POST">
             {% csrf_token %}
             <div class="row">
-                {{ user_form|crispy }}
+                {{ user_form.username|as_crispy_field }}
+                <p id="username_message" hidden style="color: red">This username already exists.</p>
+                {{ user_form.first_name|as_crispy_field }}
+                {{ user_form.last_name|as_crispy_field }}
+                {{ user_form.password1|as_crispy_field }}
+                {{ user_form.password2|as_crispy_field }}
+                {{ user_form.permission|as_crispy_field }}
+
             </div>
             <button type="submit" class="btn btn-dark btn-sm">Sign up</button>
         </form>
     </div>
-    {% endblock %}
+
+{% endblock %}

@@ -93,10 +93,10 @@ class ResetPasswordView(View):
         return render(request, 'registration/reset_password.html',
                       {'form': form, 'user_id': user_id, 'token': token})
 
-class ValidateUsernameView(View):
-    def get(self, request):
-        username = request.GET.get('username', None)
-        data = {
-            'is_taken': User.objects.filter(username__iexact=username).exists()
-        }
-        return JsonResponse(data)
+
+def validate_username(request):
+    username = request.GET.get('username', None)
+    data = {
+        'is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    return JsonResponse(data)

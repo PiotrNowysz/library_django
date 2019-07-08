@@ -11,7 +11,7 @@ from books import forms as books_forms
 from django.db.models import Q
 from books import filters
 from books import validators
-
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -66,6 +66,7 @@ class BookReturnView(PermissionRequiredMixin, View):
         bookuser.save()
         bookuser.book.save()
         return redirect(f"/user/{bookuser.user.id}")
+
 
 class BookExtendView(PermissionRequiredMixin, View):
     permission_required = 'auth.change_book'
@@ -170,3 +171,5 @@ class UserDetailsView(View):
     def get(self, request, user_id):
         user = User.objects.get(id=user_id)
         return render(request, 'books/user_details.html', {'user': user})
+
+
