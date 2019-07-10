@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
-{% block title %}<title>Add Book</title>{% endblock %}
 {% load crispy_forms_tags %}
+{% load i18n %}
+{% block title %}<title>{% blocktrans %}Add{% endblocktrans %}</title>{% endblock %}
+
 
     {% block forms %}
 <div class="col-8" style="margin: 5px">
@@ -8,7 +10,7 @@
             <form action="{% url 'book_add' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ book_form|crispy }}
-                <button type="submit" class="btn btn-dark btn-sm" name="book_btn">Add book</button>
+                <button type="submit" class="btn btn-dark btn-sm" name="book_btn">{% blocktrans %}Add book{% endblocktrans %}</button>
             </form>
         </div>
         <div style="float:left;width:30%;margin-right: 10px">
@@ -16,14 +18,14 @@
         {% url 'book_add' %}" method="post">
                 {% csrf_token %}
                 {{ author_form|crispy }}
-                <button type="submit" class="btn btn-dark btn-sm" name="author_btn">Add author</button>
+                <button type="submit" class="btn btn-dark btn-sm" name="author_btn">{% blocktrans %}Add author{% endblocktrans %}</button>
             </form>
         </div>
         <div style="float:left;width:30%">
             <form action="{% url 'book_add' %}" method="post">
                 {% csrf_token %}
                 {{ genre_form|crispy }}
-                <button type="submit" class="btn btn-dark btn-sm" name="genre_btn">Add genre</button>
+                <button type="submit" class="btn btn-dark btn-sm" name="genre_btn">{% blocktrans %}Add genre{% endblocktrans %}</button>
             </form>
         </div>
        </div>

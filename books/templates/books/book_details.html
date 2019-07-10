@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block title %}<title>{{ book }}</title>{% endblock %}
 
 {% block content %}
@@ -16,18 +17,18 @@
     </div>
     <div align="right" style="margin: 5px">
         {% if validation %}
-            <a href="/reserve/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Rent this
-                book</a>
+            <a href="/reserve/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">{% blocktrans %}Rent this
+                book{% endblocktrans %}</a>
         {% else %}
-            <button type="button" class="btn btn-dark btn-sm" disabled>Rent this book</button>
+            <button type="button" class="btn btn-dark btn-sm" disabled>{% blocktrans %}Rent this book{% endblocktrans %}</button>
         {% endif %}
         {% if perms.auth.edit_book %}
-            <a href="/book_edit/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Edit</a>
+            <a href="/book_edit/{{ book.id }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">{% blocktrans %}Edit{% endblocktrans %}</a>
         {% endif %}
         {% if perms.auth.delete_book %}
             <button onclick="confiramtion()" type="button" class="btn btn-dark btn-sm" style="color: red"
                     role="button" aria-pressed="true">
-                Delete
+                {% blocktrans %}Delete{% endblocktrans %}
             </button>
             </div>
         {% endif %}

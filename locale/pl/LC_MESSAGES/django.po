@@ -1,0 +1,306 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-10 20:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: books/filters.py:9
+msgid "YES"
+msgstr "TAK"
+
+#: books/models.py:12
+msgid "english"
+msgstr "angielski"
+
+#: books/models.py:13
+msgid "polish"
+msgstr "polski"
+
+#: books/models.py:14
+msgid "french"
+msgstr "francuzki"
+
+#: books/models.py:15
+msgid "spanish"
+msgstr "hiszpański"
+
+#: books/models.py:16
+msgid "german"
+msgstr "niemiecki"
+
+#: books/models.py:21
+#, fuzzy
+#| msgid "First Name"
+msgid "First name"
+msgstr "Imię"
+
+#: books/models.py:22
+#, fuzzy
+#| msgid "Last Name"
+msgid "Last name"
+msgstr "Nazwisko"
+
+#: books/models.py:30
+msgid "Genre"
+msgstr "Gatunek"
+
+#: books/models.py:37 books/templates/books/book_search.html:50
+#: books/templates/books/user_details.html:15
+msgid "Title"
+msgstr "Tytuł"
+
+#: books/models.py:39
+msgid "Description"
+msgstr "Opis"
+
+#: books/models.py:41 books/templates/books/book_search.html:52
+msgid "Language"
+msgstr "Język"
+
+#: books/models.py:42 books/templates/books/book_search.html:53
+msgid "Store"
+msgstr "Ilość"
+
+#: books/models.py:43
+msgid "Current store"
+msgstr "Obecna ilość"
+
+#: books/models.py:46
+msgid "Cover"
+msgstr "Okładka"
+
+#: books/templates/base.html:25
+msgid "Home"
+msgstr "Strona domowa"
+
+#: books/templates/base.html:30
+msgid "Users"
+msgstr "Użytkownicy"
+
+#: books/templates/base.html:35 books/templates/books/book_add.html:4
+msgid "Add"
+msgstr "Dodaj"
+
+#: books/templates/base.html:38 books/templates/books/book_search.html:3
+#: books/templates/books/books_list.html:4
+msgid "Books"
+msgstr "Książki"
+
+#: books/templates/base.html:42 books/templates/books/my_books.html:5
+msgid "My books"
+msgstr "Moje książki"
+
+#: books/templates/base.html:45
+msgid "Logout"
+msgstr "Wyloguj"
+
+#: books/templates/base.html:49
+#: registration/templates/registration/login.html:15
+msgid "Login"
+msgstr "Zaloguj się"
+
+#: books/templates/base.html:52
+#, fuzzy
+#| msgid " Sign up "
+msgid "Sign Up"
+msgstr "Zarejestruj się"
+
+#: books/templates/base.html:59 books/templates/base.html:61
+msgid "Search"
+msgstr "Szukaj"
+
+#: books/templates/books/book_add.html:13
+msgid "Add book"
+msgstr "Dodaj książkę"
+
+#: books/templates/books/book_add.html:21
+msgid "Add author"
+msgstr "Dodaj autora"
+
+#: books/templates/books/book_add.html:28
+msgid "Add genre"
+msgstr "Dodaj gatunek"
+
+#: books/templates/books/book_details.html:20
+#, fuzzy
+#| msgid "Rent this book"
+msgid ""
+"Rent this\n"
+"                book"
+msgstr "Wypożycz książkę"
+
+#: books/templates/books/book_details.html:23
+msgid "Rent this book"
+msgstr "Wypożycz książkę"
+
+#: books/templates/books/book_details.html:26
+msgid "Edit"
+msgstr "Edytuj"
+
+#: books/templates/books/book_details.html:31
+msgid "Delete"
+msgstr "Usuń"
+
+#: books/templates/books/book_search.html:35
+#: books/templates/books/users.html:30
+msgid "Filtr"
+msgstr "Filtruj"
+
+#: books/templates/books/book_search.html:38
+msgid ""
+"Export all to CSV\n"
+"                    file"
+msgstr "Zapisz do pliku CSV"
+
+#: books/templates/books/book_search.html:40
+msgid ""
+"Export all to XLS\n"
+"                    file"
+msgstr "Zapisz do pliku XLS"
+
+#: books/templates/books/book_search.html:51
+#: books/templates/books/user_details.html:16
+msgid "Author"
+msgstr "Autor"
+
+#: books/templates/books/book_search.html:54
+msgid "Barcode"
+msgstr "Kod"
+
+#: books/templates/books/user_details.html:17
+msgid "Rent Date"
+msgstr "Data wypożyczenia"
+
+#: books/templates/books/user_details.html:18
+msgid "Deadline"
+msgstr "Termin zwrotu"
+
+#: books/templates/books/user_details.html:19
+msgid "Return Date"
+msgstr "Data zwrotu"
+
+#: books/templates/books/user_details.html:31
+#: books/templates/books/user_details.html:35
+msgid "Return"
+msgstr "Zwróć"
+
+#: books/templates/books/user_details.html:39
+#: books/templates/books/user_details.html:44
+msgid "Extend"
+msgstr "Przedłuż"
+
+#: books/views.py:61 books/views.py:75 books/views.py:98 books/views.py:129
+#: books/views.py:147
+msgid "access denied"
+msgstr "odmowa dostępu"
+
+#: registration/forms.py:10 registration/forms.py:30 registration/forms.py:39
+msgid "Email address"
+msgstr "Adres email"
+
+#: registration/forms.py:11 registration/forms.py:31 registration/forms.py:50
+msgid "Password"
+msgstr "Hasło"
+
+#: registration/forms.py:12
+msgid "I accept the terms"
+msgstr "Akceptuję regulamin"
+
+#: registration/forms.py:27
+msgid "You need to accept the terms"
+msgstr "Musisz zaakceptować regulamin"
+
+#: registration/forms.py:44
+msgid "There is no user with the e-mail address provided"
+msgstr "Użytkownik o podanym adresie e-mail nie istnieje"
+
+#: registration/forms.py:51
+msgid "Password confirmation"
+msgstr "Powtórz hasło"
+
+#: registration/forms.py:58
+msgid "The two password fields didn't match"
+msgstr "Hasła są różne"
+
+#: registration/templates/registration/email_form.html:4
+#, fuzzy
+#| msgid "Password confirmation"
+msgid "Password forgotten "
+msgstr "Powtórz hasło"
+
+#: registration/templates/registration/email_form.html:13
+msgid "Send"
+msgstr "Wyślij"
+
+#: registration/templates/registration/login.html:12
+#, fuzzy
+#| msgid " I forgot my password "
+msgid " Show password "
+msgstr "Zapomniałem hasła"
+
+#: registration/templates/registration/login.html:18
+msgid " I forgot my password "
+msgstr "Zapomniałem hasła"
+
+#: registration/templates/registration/login.html:19
+msgid " Sign up "
+msgstr "Zarejestruj się"
+
+#: registration/templates/registration/reset_password.html:5
+#, fuzzy
+#| msgid "Password"
+msgid "Reset Password"
+msgstr "Resetowanie Hasła"
+
+#: registration/templates/registration/reset_password.html:13
+msgid "Reset"
+msgstr "Zresetuj"
+
+#: registration/templates/registration/user_create.html:3
+msgid "Register"
+msgstr "Zarejestruj się"
+
+#: registration/templates/registration/user_create.html:36
+msgid "This username already exists."
+msgstr "Ta nazwa jest już zajęta"
+
+#: registration/templates/registration/user_create.html:44
+#, fuzzy
+#| msgid " Sign up "
+msgid "Sign up"
+msgstr "Zarejestruj się"
+
+#: registration/validators.py:9
+msgid ""
+"Password requires minimum eight characters, at least one uppercase letter, "
+"one lowercase letter, one number and one special character"
+msgstr ""
+"Hasło wymaga co najmniej ośmiu znaków w tym wielka litera, mała litera, "
+"cyfra, znak specjalny"
+
+#: registration/views.py:47
+msgid "Wrong email or password"
+msgstr "Złe hasło lub email"
+
+#: registration/views.py:71
+msgid "We sent you an email"
+msgstr "Wysłaliśmy Ci wiadomość"
+
+#~ msgid "Rent this"
+#~ msgstr "Wypożycz"

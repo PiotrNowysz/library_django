@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from registration import views as registration_views
 from django.contrib.auth.views import LogoutView
 from books import views as books_views
@@ -43,4 +43,5 @@ urlpatterns = [
     path('validate_username/', registration_views.ValidateUsername.as_view(), name='validate_username'),
     path('export/csv/', books_views.BookExportCsv.as_view(), name="book_export_csv"),
     path('export/xls/', books_views.BookExportXls.as_view(), name="book_export_xls"),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]

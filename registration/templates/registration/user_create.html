@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% block title %}<title>Register</title>{% endblock %}
+{% load i18n %}
+{% block title %}<title>{% blocktrans %}Register{% endblocktrans %}</title>{% endblock %}
 {% load crispy_forms_tags %}
 
 {% block javascript %}
@@ -32,7 +33,7 @@
             {% csrf_token %}
             <div class="row">
                 {{ user_form.username|as_crispy_field }}
-                <p id="username_message" hidden style="color: red">This username already exists.</p>
+                <p id="username_message" hidden style="color: red">{% blocktrans %}This username already exists.{% endblocktrans %}</p>
                 {{ user_form.first_name|as_crispy_field }}
                 {{ user_form.last_name|as_crispy_field }}
                 {{ user_form.password1|as_crispy_field }}
@@ -40,7 +41,7 @@
                 {{ user_form.permission|as_crispy_field }}
 
             </div>
-            <button type="submit" class="btn btn-dark btn-sm">Sign up</button>
+            <button type="submit" class="btn btn-dark btn-sm">{% blocktrans %}Sign up{% endblocktrans %}</button>
         </form>
     </div>
 

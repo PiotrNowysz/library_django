@@ -1,6 +1,6 @@
 import django.forms as forms
 import books.models as models
-
+from django.utils.translation import gettext as _
 
 class BookForm(forms.ModelForm):
     class Meta:

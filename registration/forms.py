@@ -9,8 +9,6 @@ from django.core.validators import EmailValidator
 
 class UserCreateForm(UserCreationForm):
     username = forms.EmailField(label=_('Email address'), validators=[EmailValidator()])
-    first_name = forms.CharField(label=_('First Name'))
-    last_name = forms.CharField(label=_('Last Name'))
     password1 = forms.CharField(label=_('Password'), widget=forms.PasswordInput, validators=[validate_password])
     password2 = forms.CharField(label=_('Password confirmation'), widget=forms.PasswordInput)
     permission = forms.BooleanField(label=_('I accept the terms'), required=True)
@@ -59,5 +57,5 @@ class PasswordResetForm(forms.Form):
         password1 = cleaned_data.get('password1')
         password2 = cleaned_data.get('password2')
         if password1 != password2:
-            raise forms.ValidationError("The two password fields didn't match")
+            raise forms.ValidationError(_("The two password fields didn't match"))
         return cleaned_data

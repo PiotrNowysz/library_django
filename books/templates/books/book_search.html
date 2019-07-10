@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
-{% block title %}<title>Books</title>{% endblock %}
+{% load i18n %}
+{% block title %}<title>{% blocktrans %}Books{% endblocktrans %}</title>{% endblock %}
 {% load crispy_forms_tags %}
+
 
 {% block content %}
     <div>
@@ -25,21 +27,18 @@
                     {{ filter.form.current_store|as_crispy_field }}
                 </div>
                 <div style="margin-right: 5px; width:13%">
-                    {{ filter.form.barcode|as_crispy_field }}
-                </div>
-                <div style="margin-right: 5px; width:13%">
                     {{ filter.form.bookuser__is_rented|as_crispy_field }}
                 </div>
             </div>
 
             <div style="margin: 10px;">
-                <button type="submit" class="btn btn-dark btn-sm">Filtr</button>
+                <button type="submit" class="btn btn-dark btn-sm">{% blocktrans %}Filtr{% endblocktrans %}</button>
             </div>
             <div style="margin: 10px;">
-                <a href="/export/csv" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Export all to CSV
-                    file</a>
-                <a href="/export/xls" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Export all to XLS
-                    file</a>
+                <a href="/export/csv" class="btn btn-dark btn-sm" role="button" aria-pressed="true">{% blocktrans %}Export all to CSV
+                    file{% endblocktrans %}</a>
+                <a href="/export/xls" class="btn btn-dark btn-sm" role="button" aria-pressed="true">{% blocktrans %}Export all to XLS
+                    file{% endblocktrans %}</a>
             </div>
         </form>
 
@@ -48,11 +47,11 @@
         <table class="table table-borderedtable">
             <thead>
             <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Language</th>
-                <th>Store</th>
-                <th>Barcode</th>
+                <th>{% blocktrans %}Title{% endblocktrans %}</th>
+                <th>{% blocktrans %}Author{% endblocktrans %}</th>
+                <th>{% blocktrans %}Language{% endblocktrans %}</th>
+                <th>{% blocktrans %}Store{% endblocktrans %}</th>
+                <th>{% blocktrans %}Barcode{% endblocktrans %}</th>
             </tr>
             </thead>
             <tbody>

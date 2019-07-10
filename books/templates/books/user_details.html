@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
+
 {% block title %}<title>{{ user }}</title>{% endblock %}
 
 {% block content %}
@@ -10,11 +12,11 @@
         <table class="table table-borderedtable">
             <thead>
             <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Rent Date</th>
-                <th>Deadline</th>
-                <th>Return Date</th>
+                <th>{% blocktrans %}Title{% endblocktrans %}</th>
+                <th>{% blocktrans %}Author{% endblocktrans %}</th>
+                <th>{% blocktrans %}Rent Date{% endblocktrans %}</th>
+                <th>{% blocktrans %}Deadline{% endblocktrans %}</th>
+                <th>{% blocktrans %}Return Date{% endblocktrans %}</th>
             </tr>
             </thead>
             <tbody>
@@ -26,20 +28,20 @@
                 <td>{{ bookuser.deadline }}</td>
                 <td>{{ bookuser.return_date }}</td>
                 {% if bookuser.is_rented %}
-                    <td><a href="/return/{{ bookuser.id }}/" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Return</a>
+                    <td><a href="/return/{{ bookuser.id }}/" class="btn btn-dark btn-sm" role="button" aria-pressed="true">{% blocktrans %}Return{% endblocktrans %}</a>
                     </td>
                 {% else %}
                     <td>
-                <button type="button" class="btn btn-dark btn-sm" disabled>Return</button>
+                <button type="button" class="btn btn-dark btn-sm" disabled>{% blocktrans %}Return{% endblocktrans %}</button>
                     </td>
                 {% endif %}
                 {% if bookuser.is_rented %}
-                    <td><a href="/extend/{{ bookuser.id }}/" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Extend</a>
+                    <td><a href="/extend/{{ bookuser.id }}/" class="btn btn-dark btn-sm" role="button" aria-pressed="true">{% blocktrans %}Extend{% endblocktrans %}</a>
                     </td>
                 {% endif %}
                 {% if not bookuser.is_rented %}
                     <td>
-                <button type="button" class="btn btn-dark btn-sm" disabled>Extend</button>
+                <button type="button" class="btn btn-dark btn-sm" disabled>{% blocktrans %}Extend{% endblocktrans %}</button>
                     </td>
                 {% endif %}
             {%   endfor %}

@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}<title>Users</title>{% endblock %}
 {% load crispy_forms_tags %}
+{% load i18n %}
+
 
 {% block content %}
     <form action="" method="get">
@@ -25,7 +27,7 @@
         </div>
         </div>
         <div style="margin: 10px;">
-            <button type="submit" class="btn btn-dark btn-sm">Filtr</button>
+            <button type="submit" class="btn btn-dark btn-sm">{% blocktrans %}Filtr{% endblocktrans %}</button>
         </div>
     </form>
     <ul>

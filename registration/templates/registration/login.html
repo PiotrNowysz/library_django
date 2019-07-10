@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}<title>{% trans Login %}</title>{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block forms %}
+    <div class="col-3" style="margin-top: 50px">
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            {{ form.username|as_crispy_field }}
+            {{ form.password|as_crispy_field }}
+            <input type="checkbox" id="show_pass">{% blocktrans%} Show password {% endblocktrans%}<br>
+
+
+            <button type="submit" class="btn btn-dark btn-sm">{% blocktrans%}Login{% endblocktrans %}</button>
+        </form>
+        {{ message }}
+        <p><a href="{% url 'password_forgotten' %}">{% blocktrans%} I forgot my password {% endblocktrans %}</a></p>
+        <p><a href="{% url 'register' %}">{% blocktrans %} Sign up {% endblocktrans %}</a></p>
+    </div>
+{% endblock %}

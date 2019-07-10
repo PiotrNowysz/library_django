@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
-{% block title %}<title>Password forgotten</title>{% endblock %}
+{% load i18n %}
 {% load crispy_forms_tags %}
+{% block title %}<title>{% blocktrans %}Password forgotten {% endblocktrans %}</title>{% endblock %}
+
 <div class="col-3">
     {% block forms %}
 
@@ -8,7 +10,7 @@
             {% csrf_token %}
             {{ form|crispy }}
             {{ message }} <br>
-            <button type="submit" class="btn btn-dark btn-sm">Send</button>
+            <button type="submit" class="btn btn-dark btn-sm">{% blocktrans %}Send{% endblocktrans %}</button>
 
         </form>
 
