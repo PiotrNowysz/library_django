@@ -3,28 +3,27 @@
 {% load crispy_forms_tags %}
 
 {% block javascript %}
-  <script>
-    $("#id_username").keyup(function () {
-      var username = $(this).val();
+    <script>
+        $("#id_username").keyup(function () {
+            var username = $(this).val();
 
-      $.ajax({
-        url: '{% url "validate_username" %}',
-        data: {
-          'username': username
-        },
-        dataType: 'json',
-        success: function (data) {
-          if (data.is_taken) {
-            $("#username_message").removeAttr('hidden')
-          }
-          else{
-              $("#username_message").attr('hidden', 'hidden')
-          }
-        }
-      });
+            $.ajax({
+                url: '{% url "validate_username" %}',
+                data: {
+                    'username': username
+                },
+                dataType: 'json'
+            }).done(function (data) {
+                if (data.is_taken) {
+                    $("#username_message").removeAttr('hidden')
+                } else {
+                    $("#username_message").attr('hidden', 'hidden')
+                }
+            });
 
-    });
-  </script>
+
+        });
+    </script>
 {% endblock %}
 
 {% block forms %}

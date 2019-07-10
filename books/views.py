@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.views import View
 from books.models import Book, BookUser, Author
 import operator
@@ -11,7 +12,8 @@ from books import forms as books_forms
 from django.db.models import Q
 from books import filters
 from books import validators
-from django.http import JsonResponse
+import csv
+import xlwt
 
 
 # Create your views here.
@@ -173,3 +175,49 @@ class UserDetailsView(View):
         return render(request, 'books/user_details.html', {'user': user})
 
 
+class BookExportCsv(View):
+    def get(self, request):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="books.csv"'
+        writer = csv.writer(response)
+        writer.writerow(['Title', 'Author', 'Description', 'Language'])
+        books = Book.objects.all()
+        for book in books:
+            writer.writerow([book.title, book.author, book.description, book.language])
+        return response
+
+
+class BookExportXls(View):
+    def get(self, request):
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="books.xls"'
+
+        workbook = xlwt.Workbook(encoding='utf-8')
+        worksheet = workbook.add_sheet('Books')
+
+        """header"""
+        row_num = 0
+        header_style = xlwt.XFStyle()
+        header_style.font.bold = True
+        columns = ['Title', 'Author', 'Description', 'Language']
+        for col_num in range(len(columns)):
+            worksheet.write(row_num, col_num, columns[col_num], header_style)
+
+        """body"""
+        body_style = xlwt.XFStyle()
+        rows = Book.objects.all()
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(columns)):
+                value = ""
+                if col_num == 0:
+                    value = row.title
+                elif col_num == 1:
+                    value = f"{row.author.first_name} {row.author.last_name}"
+                elif col_num == 2:
+                    value = row.description
+                elif col_num == 3:
+                    value = row.language
+                worksheet.write(row_num, col_num, value, body_style)
+        workbook.save(response)
+        return response

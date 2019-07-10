@@ -1,9 +1,6 @@
 from django.contrib.auth.models import User
-from django.db import models
-import django.forms as forms
 from books.models import Book
 import django_filters
-from datetime import datetime
 
 CHOICES = (
     (None, '--------'),

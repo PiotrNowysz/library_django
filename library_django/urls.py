@@ -13,7 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, re_path
 from registration import views as registration_views
@@ -41,5 +40,7 @@ urlpatterns = [
     re_path(r'^user/(?P<user_id>(\d)+)', books_views.UserDetailsView.as_view(), name='user_details'),
     re_path(r'^return/(?P<bookuser_id>(\d)+)', books_views.BookReturnView.as_view(), name='book_return'),
     re_path(r'^extend/(?P<bookuser_id>(\d)+)', books_views.BookExtendView.as_view(), name='book_extend'),
-    url(r'^ajax/validate_username/$', registration_views.validate_username, name='validate_username'),
+    path('validate_username/', registration_views.ValidateUsername.as_view(), name='validate_username'),
+    path('export/csv/', books_views.BookExportCsv.as_view(), name="book_export_csv"),
+    path('export/xls/', books_views.BookExportXls.as_view(), name="book_export_xls"),
 ]

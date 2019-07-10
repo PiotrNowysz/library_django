@@ -4,63 +4,70 @@
 
 {% block content %}
     <div>
-    <form action="" method="get">
-        <div class="form-row" style="margin-left: 10px; margin-top: 10px;">
-            <div style="margin-right: 5px;">
-                {{ filter.form.title|as_crispy_field }}
+        <form action="" method="get">
+            <div class="form-row" style="margin-left: 10px; margin-top: 10px;">
+                <div style="margin-right: 5px;">
+                    {{ filter.form.title|as_crispy_field }}
+                </div>
+                <div style="margin-right: 5px;">
+                    {{ filter.form.author|as_crispy_field }}
+                </div>
+                <div style="margin-right: 5px;">
+                    {{ filter.form.language|as_crispy_field }}
+                </div>
+                <div style="margin-right: 5px;">
+                    {{ filter.form.genre|as_crispy_field }}
+                </div>
+                <div style="margin-right: 5px; width: 10%">
+                    {{ filter.form.store|as_crispy_field }}
+                </div>
+                <div style="margin-right: 5px; width: 10%">
+                    {{ filter.form.current_store|as_crispy_field }}
+                </div>
+                <div style="margin-right: 5px; width:13%">
+                    {{ filter.form.barcode|as_crispy_field }}
+                </div>
+                <div style="margin-right: 5px; width:13%">
+                    {{ filter.form.bookuser__is_rented|as_crispy_field }}
+                </div>
             </div>
-            <div style="margin-right: 5px;">
-                {{ filter.form.author|as_crispy_field }}
-            </div>
-            <div style="margin-right: 5px;">
-                {{ filter.form.language|as_crispy_field }}
-            </div>
-            <div style="margin-right: 5px;">
-                {{ filter.form.genre|as_crispy_field }}
-            </div>
-            <div style="margin-right: 5px; width: 10%">
-                {{ filter.form.store|as_crispy_field }}
-            </div>
-            <div style="margin-right: 5px; width: 10%">
-                {{ filter.form.current_store|as_crispy_field }}
-            </div>
-            <div style="margin-right: 5px; width:13%">
-                {{ filter.form.barcode|as_crispy_field }}
-            </div>
-            <div style="margin-right: 5px; width:13%">
-                {{ filter.form.bookuser__is_rented|as_crispy_field }}
-            </div>
-        </div>
 
-        <div style="margin: 10px;">
-            <button type="submit" class="btn btn-dark btn-sm">Filtr</button>
-        </div>
-    </form>
+            <div style="margin: 10px;">
+                <button type="submit" class="btn btn-dark btn-sm">Filtr</button>
+            </div>
+            <div style="margin: 10px;">
+                <a href="/export/csv" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Export all to CSV
+                    file</a>
+                <a href="/export/xls" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Export all to XLS
+                    file</a>
+            </div>
+        </form>
+
     </div>
     <div>
-    <table class="table table-borderedtable">
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Language</th>
-            <th>Store</th>
-            <th>Barcode</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for book in filter.qs %}
+        <table class="table table-borderedtable">
+            <thead>
             <tr>
-                <td><a style="color: #373B43" href="/book/{{ book.id }}">{{ book }}</a></td>
-                <td><a style="color: #373B43"
-                       href="/author/{{ book.author.id }}">{{ book.author }}</a></td>
-                <td style="color: #373B43">{{ book.language }}</td>
-                <td style="color: #373B43">{{ book.current_store }}/{{ book.store }}</td>
-                <td style="color: #373B43">{{ book.barcode }}</td>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Language</th>
+                <th>Store</th>
+                <th>Barcode</th>
             </tr>
+            </thead>
+            <tbody>
+            {% for book in filter.qs %}
+                <tr>
+                    <td><a style="color: #373B43" href="/book/{{ book.id }}">{{ book }}</a></td>
+                    <td><a style="color: #373B43"
+                           href="/author/{{ book.author.id }}">{{ book.author }}</a></td>
+                    <td style="color: #373B43">{{ book.language }}</td>
+                    <td style="color: #373B43">{{ book.current_store }}/{{ book.store }}</td>
+                    <td style="color: #373B43">{{ book.barcode }}</td>
+                </tr>
 
-        {% endfor %}
-        </tbody>
-    </table>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
