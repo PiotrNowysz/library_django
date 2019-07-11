@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-11 12:34+0200\n"
+"POT-Creation-Date: 2019-07-11 13:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,41 +110,37 @@ msgstr "Obecny stan"
 msgid "Cover"
 msgstr "Okładka"
 
-#: books/templates/base.html:25
-msgid "Home"
-msgstr "Strona domowa"
-
-#: books/templates/base.html:30
+#: books/templates/base.html:27
 msgid "Users"
 msgstr "Użytkownicy"
 
-#: books/templates/base.html:35 books/templates/books/book_add.html:4
+#: books/templates/base.html:32 books/templates/books/book_add.html:4
 msgid "Add"
 msgstr "Dodaj"
 
-#: books/templates/base.html:38 books/templates/books/book_search.html:3
+#: books/templates/base.html:35 books/templates/books/book_search.html:3
 #: books/templates/books/books_list.html:4
 msgid "Books"
 msgstr "Książki"
 
-#: books/templates/base.html:42 books/templates/books/my_books.html:5
+#: books/templates/base.html:39 books/templates/books/my_books.html:5
 msgid "My books"
 msgstr "Moje książki"
 
-#: books/templates/base.html:45
+#: books/templates/base.html:42
 msgid "Logout"
 msgstr "Wyloguj się"
 
-#: books/templates/base.html:49
+#: books/templates/base.html:46
 #: registration/templates/registration/login.html:15
 msgid "Login"
 msgstr "Zaloguj się"
 
-#: books/templates/base.html:52
+#: books/templates/base.html:49
 msgid "Sign Up"
 msgstr "Zarejestruj się"
 
-#: books/templates/base.html:60 books/templates/base.html:62
+#: books/templates/base.html:57 books/templates/base.html:59
 msgid "Search"
 msgstr "Szukaj"
 
@@ -222,7 +218,7 @@ msgid "Extend"
 msgstr "Przedłuż"
 
 #: books/views.py:61 books/views.py:75 books/views.py:98 books/views.py:129
-#: books/views.py:147
+#: books/views.py:147 books/views.py:157 books/views.py:167
 msgid "access denied"
 msgstr "odmowa dostępu"
 
@@ -305,3 +301,6 @@ msgstr "Złe hasło lub email"
 #: registration/views.py:71
 msgid "We sent you an email"
 msgstr "Wysłaliśmy Ci wiadomość"
+
+#~ msgid "Home"
+#~ msgstr "Strona domowa"
