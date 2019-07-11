@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-10 20:11+0200\n"
+"POT-Creation-Date: 2019-07-11 12:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,44 @@ msgstr ""
 msgid "YES"
 msgstr "TAK"
 
+#: books/filters.py:14 books/models.py:37
+#: books/templates/books/book_search.html:50
+#: books/templates/books/user_details.html:15
+msgid "Title"
+msgstr "Tytuł"
+
+#: books/filters.py:15 books/models.py:65
+msgid "Is rented"
+msgstr "Wypożyczona"
+
+#: books/filters.py:24 registration/forms.py:10 registration/forms.py:31
+#: registration/forms.py:40
+#, fuzzy
+#| msgid "Email address*"
+msgid "Email address"
+msgstr "Adres email*"
+
+#: books/filters.py:25
+#, fuzzy
+#| msgid "Rent this book"
+msgid "Rented book"
+msgstr "Wypożyczona książka"
+
+#: books/filters.py:26
+#, fuzzy
+#| msgid "Is rented"
+msgid "Has rented book"
+msgstr "Ma wypożyczoną książkę"
+
+#: books/forms.py:10 books/templates/books/book_search.html:51
+#: books/templates/books/user_details.html:16
+msgid "Author"
+msgstr "Autor"
+
+#: books/forms.py:11 books/models.py:30
+msgid "Genre"
+msgstr "Gatunek"
+
 #: books/models.py:12
 msgid "english"
 msgstr "angielski"
@@ -34,7 +72,7 @@ msgstr "polski"
 
 #: books/models.py:14
 msgid "french"
-msgstr "francuzki"
+msgstr "francuski"
 
 #: books/models.py:15
 msgid "spanish"
@@ -45,25 +83,12 @@ msgid "german"
 msgstr "niemiecki"
 
 #: books/models.py:21
-#, fuzzy
-#| msgid "First Name"
 msgid "First name"
 msgstr "Imię"
 
 #: books/models.py:22
-#, fuzzy
-#| msgid "Last Name"
 msgid "Last name"
 msgstr "Nazwisko"
-
-#: books/models.py:30
-msgid "Genre"
-msgstr "Gatunek"
-
-#: books/models.py:37 books/templates/books/book_search.html:50
-#: books/templates/books/user_details.html:15
-msgid "Title"
-msgstr "Tytuł"
 
 #: books/models.py:39
 msgid "Description"
@@ -75,11 +100,11 @@ msgstr "Język"
 
 #: books/models.py:42 books/templates/books/book_search.html:53
 msgid "Store"
-msgstr "Ilość"
+msgstr "Stan"
 
 #: books/models.py:43
 msgid "Current store"
-msgstr "Obecna ilość"
+msgstr "Obecny stan"
 
 #: books/models.py:46
 msgid "Cover"
@@ -108,7 +133,7 @@ msgstr "Moje książki"
 
 #: books/templates/base.html:45
 msgid "Logout"
-msgstr "Wyloguj"
+msgstr "Wyloguj się"
 
 #: books/templates/base.html:49
 #: registration/templates/registration/login.html:15
@@ -116,12 +141,10 @@ msgid "Login"
 msgstr "Zaloguj się"
 
 #: books/templates/base.html:52
-#, fuzzy
-#| msgid " Sign up "
 msgid "Sign Up"
 msgstr "Zarejestruj się"
 
-#: books/templates/base.html:59 books/templates/base.html:61
+#: books/templates/base.html:60 books/templates/base.html:62
 msgid "Search"
 msgstr "Szukaj"
 
@@ -138,16 +161,14 @@ msgid "Add genre"
 msgstr "Dodaj gatunek"
 
 #: books/templates/books/book_details.html:20
-#, fuzzy
-#| msgid "Rent this book"
 msgid ""
 "Rent this\n"
 "                book"
-msgstr "Wypożycz książkę"
+msgstr "Wypożycz"
 
 #: books/templates/books/book_details.html:23
 msgid "Rent this book"
-msgstr "Wypożycz książkę"
+msgstr "Wypożycz"
 
 #: books/templates/books/book_details.html:26
 msgid "Edit"
@@ -173,11 +194,6 @@ msgid ""
 "Export all to XLS\n"
 "                    file"
 msgstr "Zapisz do pliku XLS"
-
-#: books/templates/books/book_search.html:51
-#: books/templates/books/user_details.html:16
-msgid "Author"
-msgstr "Autor"
 
 #: books/templates/books/book_search.html:54
 msgid "Barcode"
@@ -210,49 +226,41 @@ msgstr "Przedłuż"
 msgid "access denied"
 msgstr "odmowa dostępu"
 
-#: registration/forms.py:10 registration/forms.py:30 registration/forms.py:39
-msgid "Email address"
-msgstr "Adres email"
-
-#: registration/forms.py:11 registration/forms.py:31 registration/forms.py:50
+#: registration/forms.py:11 registration/forms.py:32 registration/forms.py:51
 msgid "Password"
 msgstr "Hasło"
 
-#: registration/forms.py:12
-msgid "I accept the terms"
-msgstr "Akceptuję regulamin"
-
-#: registration/forms.py:27
-msgid "You need to accept the terms"
-msgstr "Musisz zaakceptować regulamin"
-
-#: registration/forms.py:44
-msgid "There is no user with the e-mail address provided"
-msgstr "Użytkownik o podanym adresie e-mail nie istnieje"
-
-#: registration/forms.py:51
+#: registration/forms.py:12 registration/forms.py:52
 msgid "Password confirmation"
 msgstr "Powtórz hasło"
 
-#: registration/forms.py:58
+#: registration/forms.py:13
+msgid "I accept the terms"
+msgstr "Akceptuję regulamin"
+
+#: registration/forms.py:28
+msgid "You need to accept the terms"
+msgstr "Musisz zaakceptować regulamin"
+
+#: registration/forms.py:45
+msgid "There is no user with the e-mail address provided"
+msgstr "Użytkownik z podanym adresem email nie istnieje"
+
+#: registration/forms.py:59
 msgid "The two password fields didn't match"
-msgstr "Hasła są różne"
+msgstr "Podane hasła są różne"
 
 #: registration/templates/registration/email_form.html:4
-#, fuzzy
-#| msgid "Password confirmation"
 msgid "Password forgotten "
-msgstr "Powtórz hasło"
+msgstr "Zapomniano hasło"
 
 #: registration/templates/registration/email_form.html:13
 msgid "Send"
 msgstr "Wyślij"
 
 #: registration/templates/registration/login.html:12
-#, fuzzy
-#| msgid " I forgot my password "
 msgid " Show password "
-msgstr "Zapomniałem hasła"
+msgstr "Pokaż hasło"
 
 #: registration/templates/registration/login.html:18
 msgid " I forgot my password "
@@ -263,26 +271,22 @@ msgid " Sign up "
 msgstr "Zarejestruj się"
 
 #: registration/templates/registration/reset_password.html:5
-#, fuzzy
-#| msgid "Password"
 msgid "Reset Password"
-msgstr "Resetowanie Hasła"
+msgstr "Zmiana hasła"
 
 #: registration/templates/registration/reset_password.html:13
 msgid "Reset"
-msgstr "Zresetuj"
+msgstr "Zmień"
 
 #: registration/templates/registration/user_create.html:3
 msgid "Register"
-msgstr "Zarejestruj się"
+msgstr "Rejestracja"
 
 #: registration/templates/registration/user_create.html:36
 msgid "This username already exists."
-msgstr "Ta nazwa jest już zajęta"
+msgstr "Taki użytkownik już istnieje"
 
 #: registration/templates/registration/user_create.html:44
-#, fuzzy
-#| msgid " Sign up "
 msgid "Sign up"
 msgstr "Zarejestruj się"
 
@@ -291,7 +295,7 @@ msgid ""
 "Password requires minimum eight characters, at least one uppercase letter, "
 "one lowercase letter, one number and one special character"
 msgstr ""
-"Hasło wymaga co najmniej ośmiu znaków w tym wielka litera, mała litera, "
+"Hasło musi zawierać co namjmniej osiem znaków w tym wielka i mała litera, "
 "cyfra, znak specjalny"
 
 #: registration/views.py:47
@@ -301,6 +305,3 @@ msgstr "Złe hasło lub email"
 #: registration/views.py:71
 msgid "We sent you an email"
 msgstr "Wysłaliśmy Ci wiadomość"
-
-#~ msgid "Rent this"
-#~ msgstr "Wypożycz"

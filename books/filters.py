@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from books.models import Book
 import django_filters
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 
 CHOICES = (
@@ -11,8 +11,8 @@ CHOICES = (
 
 
 class BookFilter(django_filters.FilterSet):
-    title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
-    bookuser__is_rented = django_filters.ChoiceFilter(label="Is rented", distinct=True, choices=CHOICES,
+    title = django_filters.CharFilter(lookup_expr='icontains', label=_('Title'))
+    bookuser__is_rented = django_filters.ChoiceFilter(label=_("Is rented"), distinct=True, choices=CHOICES,
                                                       empty_label=None)
 
     class Meta:
@@ -21,9 +21,9 @@ class BookFilter(django_filters.FilterSet):
 
 
 class UserFilter(django_filters.FilterSet):
-    username = django_filters.CharFilter(label='Email')
-    book__title = django_filters.CharFilter(label="Rented book", distinct=True)
-    bookuser__is_rented = django_filters.ChoiceFilter(label="Has rented book", distinct=True, choices=CHOICES,
+    username = django_filters.CharFilter(label=_('Email address'))
+    book__title = django_filters.CharFilter(label=_("Rented book"), distinct=True)
+    bookuser__is_rented = django_filters.ChoiceFilter(label=_("Has rented book"), distinct=True, choices=CHOICES,
                                                       empty_label=None)
 
 

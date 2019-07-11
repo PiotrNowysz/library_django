@@ -1,8 +1,7 @@
 import django.forms as forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from registration.models import UserDetails
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from .validators import validate_password
 from django.core.validators import EmailValidator
 

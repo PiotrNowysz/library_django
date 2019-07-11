@@ -12,7 +12,7 @@
 </head>
 <body>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/admin">Library
+    <a class="navbar-brand" href="/">Library
         <img src="{% static 'registration/logo.png' %}" width="45" height="45"/>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -21,9 +21,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/">{% blocktrans %}Home{% endblocktrans %}</a>
-            </li>
             {% if user.is_authenticated %}
                 {% if perms.auth.view_user %}
                     <li class="nav-item">
@@ -61,25 +58,29 @@
                    aria-label="Search">
             <button class="btn btn-secondary btn-sm" type="submit">{% blocktrans %}Search{% endblocktrans %}</button>
         </form>
-{#        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}#}
-{#            <input name="next" type="hidden" value="{{ redirect_to }}">#}
-{#            <select name="language">#}
-{#                {% get_current_language as LANGUAGE_CODE %}#}
-{#                {% get_available_languages as LANGUAGES %}#}
-{#                {% get_language_info_list for LANGUAGES as languages %}#}
-{#                {% for language in languages %}#}
-{#                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>#}
-{#                        {{ language.name_local }} ({{ language.code }})#}
-{#                    </option>#}
-{#                {% endfor %}#}
-{#            </select>#}
-{#            <input type="submit" value="Go">#}
-{#        </form>#}
-{#    <div>    {% get_current_language as LANGUAGE_CODE %}#}
-{#        {% if  %}#}
-{#    <a href="set_lang/{{ LANGUAGE_CODE }}">{{ LANGUAGE_CODE }}</a></div>#}
 
+        <script>
+            function selectChange(val) {
+                $('#set_lang').submit();
+            }
+        </script>
+        <div style="margin: 10px">
+        <form id="set_lang" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <select name="language" class="custom-select custom-select-sm" onChange=selectChange(this.value)>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                        {{ language.name_local }}
+                    </option>
+                {% endfor %}
+            </select>
+        </form>
+        </div>
     </div>
+
 </nav>
 <div class="container">
     <div class="row justify-content-center">

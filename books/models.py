@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import User
 from django.db import models
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from books.utils import get_upload_file_hashdir, make_md5
 
 # Create your models here.
@@ -62,7 +62,7 @@ class BookUser(models.Model):
     comment = models.CharField(max_length=1024, null=True, blank=True)
     rating = models.IntegerField(choices=RATING, null=True, blank=True)
     deadline = models.DateTimeField(null=True, blank=True)
-    is_rented = models.BooleanField(default=False)
+    is_rented = models.BooleanField(_('Is rented'), default=False)
     rent_date = models.DateTimeField(auto_now_add=True)
     return_date = models.DateTimeField(null=True, blank=True)
 

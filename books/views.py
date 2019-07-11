@@ -152,7 +152,9 @@ class BookDeleteView(PermissionRequiredMixin, View):
         return redirect('/book_search')
 
 
-class BookFilterView(View):
+class BookFilterView(PermissionRequiredMixin, View):
+    permission_required = 'auth.change_book'
+    permission_denied_message = _('access denied')
 
     def get(self, request):
         book_list = Book.objects.all()
@@ -160,7 +162,9 @@ class BookFilterView(View):
         return render(request, 'books/book_search.html', {'filter': filter})
 
 
-class UserFilterView(View):
+class UserFilterView(PermissionRequiredMixin, View):
+    permission_required = 'auth.change_book'
+    permission_denied_message = _('access denied')
 
     def get(self, request):
         user_list = User.objects.all()
