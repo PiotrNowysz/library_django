@@ -19,3 +19,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+import mimetypes
+mimetypes.init()
+mimetypes.types_map['.css'] = 'text/css'
